@@ -1,5 +1,51 @@
 import styled from 'styled-components';
 
+export const FormTitle = styled.h3`
+  font-weight: "bold";
+  margin-top: 15px;
+  background: linear-gradient(121.57deg, #656d4a 18.77%, #414833 60.15%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
+export const FormInput = styled.input`
+  font-size: 27px;
+  color: #656d4a;
+  padding: 10px;
+  margin: 10px 10px 10px 0px;
+  background: white;
+  border-color: #ffe5d9;
+  border-radius: 2px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: dashed;
+  outline: none;
+  ::placeholder {
+    color: #84a98c;
+`
+
+export const FormTextArea = styled.textarea`
+  font-size: 27px;
+  color: #656d4a;
+  padding: 10px;
+  margin: 10px 10px 10px 0px;
+  width: 770px;
+  height: 100px;
+  background: white;
+  border-color: #ffe5d9;
+  border-width: 2px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: dashed;
+  resize: none;
+  overflow: hidden;
+  outline: none;
+  ::placeholder {
+    color: #84a98c;
+`
+
 export const Img = styled.img`
   width:100%;
   height:100%;
