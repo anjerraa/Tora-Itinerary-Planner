@@ -19,13 +19,13 @@ const Header = () =>  (
     {/* Scrolls to the corresponding section of the page. */}
     <Div2>
       <li>
-        <Link href="#current-trips">
-          <NavLink>Current Trips</NavLink>
+        <Link href="#create-trip">
+          <NavLink>Create Trip</NavLink>
         </Link>
       </li>
       <li>
-        <Link href="#upcoming-trips">
-          <NavLink>Upcoming Trips</NavLink>
+        <Link href="#view-trips">
+          <NavLink>View Trips</NavLink>
         </Link>
       </li>
       <li>

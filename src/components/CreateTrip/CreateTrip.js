@@ -1,18 +1,20 @@
 import React, { useState, useReducer } from 'react';
 
-import { FormTitle, FormInput, FormTextArea } from './ProjectsStyles';
+import { FormTitle, FormInput, FormTextArea } from './CreateTripStyles';
 import { Section, SectionDivider, SectionText, SectionTitle } from '../../styles/GlobalComponents';
 import { projects } from '../../constants/constants';
 import { ButtonPrimary, ButtonSecondary } from '../../styles/GlobalComponents/Button';
 import { DateRangeInput } from '@datepicker-react/styled'
 import { ThemeProvider } from 'styled-components';
 
+// Initialise the state of the date range picker.
 const initialState = {
   startDate: null,
   endDate: null,
   focusedInput: null,
 }
 
+// Helper function for the date range picker state.
 function reducer(state, action) {
   switch (action.type) {
     case 'focusChange':
@@ -24,6 +26,7 @@ function reducer(state, action) {
   }
 }
 
+// Theme for the date range picker.
 const DateRangeTheme = {
   breakpoints: ['32em', '48em', '64em'],
   reactDatepicker: {
@@ -38,20 +41,35 @@ const DateRangeTheme = {
   },
 }
 
-const Projects = () => {
+const CreateTrip = () => {
   
   // Initialise states for the trip name, description and dates.
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [dates, dispatch] = useReducer(reducer, initialState);
+
+  const HandleSubmit = (e) => {
+
+    // Prevent page from refreshing when "Add Trip" button is clicked.
+    e.preventDefault();
+
+    // Save the basic details of the trip.
+    const trip = { name, description, dates};
+
+    fetch('http://localhost:3000/#')
+  }
 
   return (
-    <Section nopadding id="new-trip">
+    <Section nopadding id="create-trip">
       <SectionDivider/>
+      <br/>
       <SectionTitle main>Create a new trip</SectionTitle>
+      <br/>
       <SectionText>
+
         Add the basic details of your trip, such as name, description, dates and location.
-        <form>
+        <br/><br/>
+        <form onSubmit={HandleSubmit}>
 
           {/* Create an input field for the trip name. */}
           <FormTitle>Trip name:</FormTitle>
@@ -72,20 +90,23 @@ const Projects = () => {
             onChange={(e) => setDescription(e.target.value)}
           />
 
+          {/* Create a date range picker. */}
           <FormTitle>Dates:</FormTitle>
           <br/>
           <ThemeProvider theme={DateRangeTheme}>
             <DateRangeInput
               onDatesChange={data => dispatch({type: 'dateChange', payload: data})}
               onFocusChange={focusedInput => dispatch({type: 'focusChange', payload: focusedInput})}
-              startDate={state.startDate} // Date or null
-              endDate={state.endDate} // Date or null
-              focusedInput={state.focusedInput} // START_DATE, END_DATE or null
+              startDate={dates.startDate} // Date or null
+              endDate={dates.endDate} // Date or null
+              focusedInput={dates.focusedInput} // START_DATE, END_DATE or null
               placement='top'
+              required
             />
           </ThemeProvider>
-
           <br/><br/>
+
+          {/* Submit event. */}
           <ButtonSecondary>Add Trip!</ButtonSecondary>
         </form>
       </SectionText>
@@ -93,4 +114,4 @@ const Projects = () => {
   )
 };
 
-export default Projects;
+export default CreateTrip;

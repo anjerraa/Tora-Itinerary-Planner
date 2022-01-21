@@ -1,17 +1,17 @@
 import React from 'react'
 
-import { ButtonBack, ButtonFront } from './index'
+import { ButtonBackPrimary, ButtonFrontPrimary, ButtonBackSecondary, ButtonFrontSecondary } from './index'
 
 const ButtonPrimary = (props) => (
-  <ButtonBack alt={props.alt} form={props.form} disabled={props.disabled}>{props.children}
-    <ButtonFront alt={props.alt} onClick={props.onClick} disabled={props.disabled}>{props.children}</ButtonFront>
-  </ButtonBack>
+  <ButtonBackPrimary alt={props.alt} form={props.form} disabled={props.disabled}>{props.children}
+    <ButtonFrontPrimary alt={props.alt} onClick={props.onClick} disabled={props.disabled}>{props.children}</ButtonFrontPrimary>
+  </ButtonBackPrimary>
 );
 
 const ButtonSecondary = (props) => (
-  <ButtonBack alt={props.alt} form={props.form} disabled={props.disabled}>{props.children}
-    <ButtonFront alt={props.alt} onClick={props.onClick} disabled={props.disabled}>{props.children}</ButtonFront>
-  </ButtonBack>
+  <ButtonBackSecondary alt={props.alt} form={props.form} disabled={props.disabled}>{props.children}
+    <ButtonFrontSecondary alt={props.alt} onClick={props.onClick} disabled={props.disabled}>{props.children}</ButtonFrontSecondary>
+  </ButtonBackSecondary>
 );
 
 module.exports = {

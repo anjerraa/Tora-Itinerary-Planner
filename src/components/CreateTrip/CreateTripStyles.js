@@ -31,7 +31,7 @@ export const FormTextArea = styled.textarea`
   padding: 10px;
   margin: 10px 10px 10px 0px;
   width: 770px;
-  height: 100px;
+  height: 55px;
   background: white;
   border-color: #ffe5d9;
   border-width: 2px;
