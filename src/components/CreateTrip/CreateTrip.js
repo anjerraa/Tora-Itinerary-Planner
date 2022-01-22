@@ -44,19 +44,25 @@ const DateRangeTheme = {
 const CreateTrip = () => {
   
   // Initialise states for the trip name, description and dates.
-  const [name, setName] = useState('');
+  const [location, setLocation] = useState('');
   const [description, setDescription] = useState('');
   const [dates, dispatch] = useReducer(reducer, initialState);
+  const [isPending, setIsPending] = useState(false);
 
   const HandleSubmit = (e) => {
-
     // Prevent page from refreshing when "Add Trip" button is clicked.
     e.preventDefault();
-
     // Save the basic details of the trip.
-    const trip = { name, description, dates};
-
-    fetch('http://localhost:3000/#')
+    const NewTrip = { location, description, dates};
+    setIsPending(true);
+    fetch('http://localhost:3000/#view-trips', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify(NewTrip)
+    }).then(() => {
+      console.log('new blog added');
+      setIsPending(false);
+    })
   }
 
   return (
@@ -72,13 +78,13 @@ const CreateTrip = () => {
         <form onSubmit={HandleSubmit}>
 
           {/* Create an input field for the trip name. */}
-          <FormTitle>Trip name:</FormTitle>
+          <FormTitle>Location:</FormTitle>
           <FormInput 
             type="text"
             required
-            maxLength="20"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            maxLength="40"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
           />
 
           {/* Create a text area for the trip description. */}
@@ -107,7 +113,8 @@ const CreateTrip = () => {
           <br/><br/>
 
           {/* Submit event. */}
-          <ButtonSecondary>Add Trip!</ButtonSecondary>
+          {!isPending && <ButtonSecondary href="#view-trips">Add Trip!</ButtonSecondary>}
+          {isPending && <ButtonSecondary disabled href="#view-trips">Add Trip...</ButtonSecondary>}
         </form>
       </SectionText>
     </Section>
