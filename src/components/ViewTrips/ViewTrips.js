@@ -1,60 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { SliderBody, SliderBox, SliderImgBox, SliderImg, SliderDetailBox, SliderImgOverlay, DetailsButton } from './ViewTripsStyles';
+import { SliderBody } from './ViewTripsStyles';
 import { Section, SectionDivider, SectionText, SectionTitle } from '../../styles/GlobalComponents';
-import { FaSearch, FaPlane } from 'react-icons/fa';
-import { projects } from '../../constants/constants';
-const Trips = require('../../../data/db.json'); 
-
+import TripList from './TripList';
+import { ButtonSecondary } from '../../styles/GlobalComponents/Button';
 
 const CreateTrip = () => {
 
-  const [Trips, setTrips] = useState ([
-    {location: 'Santorini', description: 'Maddie\'s 20th birthday!', dates: '', id: 1},
-    {location: 'Bali', description: 'Maddie\'s 21st birthday!', dates: '', id: 2},
-    {location: 'Vietnam', description: 'Maddie\'s 22nd birthday!', dates: '', id: 3},
-  ])
+  // Initially there is no existing trip, page is loading and there is no error.
+  const [trips, setTrips] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Function runs on every data render.
+  // useEffect is run once on the initial render, not when the data changes.
+  useEffect(() => {
+    // Get the trips data.
+    fetch("http://localhost:8000/trips")
+      .then(res => {
+        if (!res.ok) {
+          throw Error('Could not fetch the data for that resource.')
+        }
+        // Passes the JSON string into a JS object.
+        return res.json();
+      })
+      .then(data => {
+        setTrips(data);
+        setIsLoading(false);
+        setError(null);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(err.message);
+      });
+  }, []);
 
   return (
     <Section nopadding id="view-trips">
       <SectionDivider/><br/>
       <SectionTitle main>View your trips</SectionTitle><br/>
       <SectionText>
-        Click onto a trip to start customising your itinerary.
-      </SectionText>
-      <br/><br/>
+        { trips && trips.length && <SectionText>Click onto a trip to start customising your itinerary.<br/></SectionText> }
+        { trips && !trips.length && <SectionText>You have no existing trips.<br/><br/><ButtonSecondary onClick={() => window.location = "#create-trip"}>Create a trip!</ButtonSecondary></SectionText> }
+      </SectionText><br/><br/>
       <SliderBody>
-
-        {Trips.map((Trip) => (
-          <div className='trip-preview' key={Trip.id}>
-              <SliderBox>
-
-                {/* Image of the trip. */}
-                <SliderImgBox>
-                  <SliderImg src= "https://cdn.theculturetrip.com/wp-content/uploads/2017/06/oia_santorini_hdr_sunset.jpg" alt={Trip.id}/>
-
-                  <SliderImgOverlay>
-                    <DetailsButton>Trip details<FaSearch style={{marginLeft: '5px'}}/></DetailsButton>
-                  </SliderImgOverlay>
-
-                </SliderImgBox>
-
-                {/* Details of the trip. */}
-                <SliderDetailBox>
-                  <ul>
-                    <li><b>Location:</b> {Trip.location}</li><br/>
-                    <li><b>Description:</b> {Trip.description}</li><br/>
-                    <li><b>Dates: {Trip.dates}</b></li>
-                  </ul>
-                </SliderDetailBox>
-
-              </SliderBox>
-          </div>
-        ))}
-        
+        { error && <SectionText>{error}</SectionText>}
+        { isLoading && <SectionText>Loading...</SectionText>}
+        {/* Evaluates `trips`: if NOT null, then map the objects. */}
+        { trips && <TripList trips={trips}/>}
       </SliderBody>
     </Section>
-  )
+  );
 };
 
 export default CreateTrip;

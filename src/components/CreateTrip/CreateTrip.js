@@ -47,21 +47,24 @@ const CreateTrip = () => {
   const [location, setLocation] = useState('');
   const [description, setDescription] = useState('');
   const [dates, dispatch] = useReducer(reducer, initialState);
-  const [isPending, setIsPending] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const HandleSubmit = (e) => {
     // Prevent page from refreshing when "Add Trip" button is clicked.
     e.preventDefault();
     // Save the basic details of the trip.
-    const NewTrip = { location, description, dates};
-    setIsPending(true);
-    fetch('http://localhost:3000/#view-trips', {
+    delete dates.focusedInput;
+    const startDate = dates.startDate.toString().substr(4, 11);
+    const endDate = dates.endDate.toString().substr(4, 11);
+    const newTrip = { location, description, startDate, endDate };
+    setIsLoading(true);
+    fetch('http://localhost:8000/trips', {
       method: 'POST',
-      headers: { "Content-Type": "application/json"},
-      body: JSON.stringify(NewTrip)
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newTrip)
     }).then(() => {
-      console.log('new blog added');
-      setIsPending(false);
+      console.log('Added a new trip.');
+      setIsLoading(false);
     })
   }
 
@@ -107,14 +110,14 @@ const CreateTrip = () => {
               endDate={dates.endDate} // Date or null
               focusedInput={dates.focusedInput} // START_DATE, END_DATE or null
               placement='top'
-              required
             />
           </ThemeProvider>
           <br/><br/>
 
           {/* Submit event. */}
-          {!isPending && <ButtonSecondary href="#view-trips">Add Trip!</ButtonSecondary>}
-          {isPending && <ButtonSecondary disabled href="#view-trips">Add Trip...</ButtonSecondary>}
+          {!isLoading && <ButtonSecondary>Add Trip!</ButtonSecondary>}
+          {isLoading && <ButtonSecondary disabled>Add Trip...</ButtonSecondary>}
+          
         </form>
       </SectionText>
     </Section>

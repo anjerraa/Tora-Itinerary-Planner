@@ -176,7 +176,7 @@ export const ButtonBackPrimary = styled.div`
   justify-content: center;
   margin: ${({ alt, form }) => (alt || form) ? '0' : '0 0 80px'};
   color: #fff;
-  background: ${({ alt }) => alt ? 'linear-gradient(270deg, #ff622e 0%, #B133FF 100%)' : 'linear-gradient(230deg, #ffcdb2 0%, #a2a182 100%)'};
+  background: ${({ alt }) => alt ? 'linear-gradient(220deg, #ff622e 0%, #B133FF 100%)' : 'linear-gradient(230deg, #ffcdb2 0%, #a2a182 100%)'};
   cursor: pointer;
   transition: 0.5s ease;
   position: relative;
@@ -255,7 +255,7 @@ export const ButtonBackSecondary = styled.div`
   justify-content: center;
   margin: ${({ alt, form }) => (alt || form) ? '0' : '0 0 80px'};
   color: #fff;
-  background: ${({ alt }) => alt ? 'linear-gradient(270deg, #ff622e 0%, #B133FF 100%)' : 'linear-gradient(230deg, #a2a182 0%, #a2a182 100%)'};
+  background: ${({ alt }) => alt ? 'linear-gradient(360deg, #ffd7ba 0%, #C2C5AA 100%)' : 'linear-gradient(230deg, #ffd7ba 0%, #C2C5AA 100%)'};
   cursor: pointer;
   transition: 0.5s ease;
   position: relative;
@@ -287,7 +287,7 @@ export const ButtonFrontSecondary = styled.button`
   left: 0;
   width: 100%;
   height: 100%;
-  background: ${({ alt }) => alt ? 'linear-gradient(270deg, #ff622e 0%, #B133FF 100%)' : 'linear-gradient(230deg, #a2a182 0%, #a2a182 100%)'};
+  background: ${({ alt }) => alt ? 'linear-gradient(320deg, #ffd7ba 0%, #C2C5AA 100%)' : 'linear-gradient(230deg, #ffd7ba 0%, #C2C5AA 100%)'};
   opacity: ${({ disabled }) => disabled ? '.5' : '1'};
   transition: .4s ease;
   font-size: ${({ alt }) => alt ? '20px' : '24px'};

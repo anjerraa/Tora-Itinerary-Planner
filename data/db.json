@@ -1,3 +1,11 @@
-[
-  
-]
+{
+  "trips": [
+    {
+      "location": "Santorini",
+      "description": "Mai's 20th Birthday!",
+      "startDate": "Jan 05 2022",
+      "endDate": "Jan 12 2022",
+      "id": 1
+    }
+  ]
+}
