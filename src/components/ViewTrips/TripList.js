@@ -21,9 +21,7 @@ const TripList = ({ trips }) => {
               <SliderImgOverlay>
                   <DetailsButton onClick={() => setIsOpen(true)}>Trip details<FaSearch style={{marginLeft: '5px'}}/></DetailsButton>
                   
-                  <TripModal open={isOpen} onClose={() => setIsOpen(false)}>
-                    Fancy modal
-                  </TripModal>
+                  <TripModal open={isOpen} onClose={() => setIsOpen(false)}/>
                   
               </SliderImgOverlay>
             </SliderImgBox>

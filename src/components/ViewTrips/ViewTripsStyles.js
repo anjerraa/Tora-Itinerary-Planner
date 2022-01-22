@@ -8,7 +8,7 @@ export const SliderBody = styled.div`
 `
 
 export const SliderBox = styled.div`
-  margin: 0px 30px 30px 30px;
+  margin: 0px 30px 30px 0px;
   width: 350px;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -20,7 +20,7 @@ export const SliderBox = styled.div`
 `
 
 export const SliderImgBox = styled.div`
-  height: 450px;
+  height: 355px;
   position: relative;
 `
 
@@ -64,7 +64,7 @@ export const DetailsButton = styled.button`
     background-color: #fff;
     background-color: rgba(255,255,255,0.9);
     color: rgba(65, 72, 51, 0.9);
-    transition: all ease 0.8s;
+    transition: all ease 0.3s;
   }
 `
 
