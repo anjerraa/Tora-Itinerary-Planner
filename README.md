@@ -24,4 +24,9 @@ Possible future features include:
 
 ### View trips:
 
-<img src="https://i.ibb.co/dmDs8pr/view-trips-pg.png">
+<img src="https://i.ibb.co/z8Mjjgg/view-trips-pg.png">
+
+### Add details to a trip:
+
+<img src="https://i.ibb.co/T2zKZ5K/edit-trip-pg.png">
+
