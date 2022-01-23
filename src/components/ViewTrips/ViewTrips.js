@@ -5,10 +5,10 @@ import { Section, SectionDivider, SectionText, SectionTitle } from '../../styles
 import TripList from './TripList';
 import { ButtonSecondary } from '../../styles/GlobalComponents/Button';
 
-const CreateTrip = () => {
+const ViewTrips = () => {
 
   // Initially there is no existing trip, page is loading and there is no error.
-  const [trips, setTrips] = useState(null);
+  const [trips, setTrips] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -39,18 +39,24 @@ const CreateTrip = () => {
     <Section nopadding id="view-trips">
       <SectionDivider/><br/>
       <SectionTitle main>View your trips</SectionTitle><br/>
+
       <SectionText>
-        { trips && trips.length && <SectionText>Click onto a trip to start customising your itinerary.<br/></SectionText> }
-        { trips && !trips.length && <SectionText>You have no existing trips.<br/><br/><ButtonSecondary onClick={() => window.location = "#create-trip"}>Create a trip!</ButtonSecondary></SectionText> }
+        { trips.length ? (
+          <SectionText>Hover onto a trip to start customising your itinerary.<br/></SectionText>
+        ) : (
+          <SectionText>You have no existing trips.<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></SectionText>
+        ) }
       </SectionText><br/><br/>
+
       <SliderBody>
         { error && <SectionText>{error}</SectionText>}
         { isLoading && <SectionText>Loading...</SectionText>}
         {/* Evaluates `trips`: if NOT null, then map the objects. */}
-        { trips && <TripList trips={trips}/>}
+        <TripList trips={trips}/>
       </SliderBody>
+
     </Section>
   );
 };
 
-export default CreateTrip;
+export default ViewTrips;

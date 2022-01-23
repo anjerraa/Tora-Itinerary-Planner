@@ -2,10 +2,24 @@
   "trips": [
     {
       "location": "Santorini",
-      "description": "Mai's 20th Birthday!",
-      "startDate": "Jan 05 2022",
-      "endDate": "Jan 12 2022",
+      "description": "Angella's birthday!",
+      "startDate": "Jan 13 2022",
+      "endDate": "Jan 16 2022",
       "id": 1
+    },
+    {
+      "location": "Halong Bay",
+      "description": "Tom's Birthday!",
+      "startDate": "Jan 13 2022",
+      "endDate": "Jan 16 2022",
+      "id": 2
+    },
+    {
+      "location": "Provence",
+      "description": "Anniversary",
+      "startDate": "Oct 13 2022",
+      "endDate": "Oct 29 2022",
+      "id": 3
     }
   ]
 }

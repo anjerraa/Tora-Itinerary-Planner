@@ -28,11 +28,6 @@ const Header = () =>  (
           <NavLink>View Trips</NavLink>
         </Link>
       </li>
-      <li>
-        <Link href="#past-trips">
-          <NavLink>Past Trips</NavLink>
-        </Link>
-      </li>
     </Div2>
 
     {/* Social links via React icons. */}

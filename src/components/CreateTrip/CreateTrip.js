@@ -1,9 +1,8 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 
 import { FormTitle, FormInput, FormTextArea } from './CreateTripStyles';
 import { Section, SectionDivider, SectionText, SectionTitle } from '../../styles/GlobalComponents';
-import { projects } from '../../constants/constants';
-import { ButtonPrimary, ButtonSecondary } from '../../styles/GlobalComponents/Button';
+import { ButtonSecondary } from '../../styles/GlobalComponents/Button';
 import { DateRangeInput } from '@datepicker-react/styled'
 import { ThemeProvider } from 'styled-components';
 
@@ -51,9 +50,8 @@ const CreateTrip = () => {
 
   const HandleSubmit = (e) => {
     // Prevent page from refreshing when "Add Trip" button is clicked.
-    e.preventDefault();
+    // e.preventDefault();
     // Save the basic details of the trip.
-    delete dates.focusedInput;
     const startDate = dates.startDate.toString().substr(4, 11);
     const endDate = dates.endDate.toString().substr(4, 11);
     const newTrip = { location, description, startDate, endDate };
@@ -66,6 +64,8 @@ const CreateTrip = () => {
       console.log('Added a new trip.');
       setIsLoading(false);
     })
+    setLocation('');
+    setDescription('');
   }
 
   return (
@@ -76,7 +76,7 @@ const CreateTrip = () => {
       <br/>
       <SectionText>
 
-        Add the basic details of your trip, such as name, description, dates and location.
+        Add the basic details of your trip, such as location, description and dates.
         <br/><br/>
         <form onSubmit={HandleSubmit}>
 
